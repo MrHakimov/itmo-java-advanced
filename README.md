@@ -1,15 +1,15 @@
 # itmo-java-advanced
 
 ## Homeworks
-1. [java-solutions/ru/ifmo/rain/hakimov/walk](walk) - Java I/O, Java NIO (java.nio)
-2. arrayset - Collections, Java Collections Framework
-3. student - Lambdas, Lambda-expressions, Java Stream API
-4. implementor - Java Reflection, Java Docs, JAR
-5. concurrent - Java Thread, syncronyzed
-6. crawler - Java Concurrency Utilities, (java.concurrent)
-7. hello - Network, TCP/IP, UDP, Non-blocking I/O, Asyncronous I/O
-8. bank - Serialization, RMI
-9. i18n - Localization, Internationalization (java.text)
+1. [walk](java-solutions/ru/ifmo/rain/hakimov/walk) - Java I/O, Java NIO (java.nio)
+2. [arrayset](java-solutions/ru/ifmo/rain/hakimov/arrayset) - Collections, Java Collections Framework
+3. [student](java-solutions/ru/ifmo/rain/hakimov/student) - Lambdas, Lambda-expressions, Java Stream API
+4. [implementor](java-solutions/ru/ifmo/rain/hakimov/implementor) - Java Reflection, Java Docs, JAR
+5. [concurrent](java-solutions/ru/ifmo/rain/hakimov/concurrent) - Java Thread, syncronyzed
+6. [crawler](java-solutions/ru/ifmo/rain/hakimov/crawler) - Java Concurrency Utilities, (java.concurrent)
+7. [hello](java-solutions/ru/ifmo/rain/hakimov/hello) - Network, TCP/IP, UDP, Non-blocking I/O, Asyncronous I/O
+8. [bank](java-solutions/ru/ifmo/rain/hakimov/bank) - Serialization, RMI
+9. [i18n](java-solutions/ru/ifmo/rain/hakimov/i18n) - Localization, Internationalization (java.text)
 
 ## Running test
 To run tests for this homework go to `.../out/production/HomeworkName` and run command below:
