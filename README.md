@@ -1,7 +1,7 @@
 # itmo-java-advanced
 
 ## Homeworks
-1. [walk](java-solutions/ru/ifmo/rain/hakimov/walk) - Java I/O, Java NIO (java.nio)
+1. `[walk](java-solutions/ru/ifmo/rain/hakimov/walk)` - Java I/O, Java NIO (java.nio)
 2. [arrayset](java-solutions/ru/ifmo/rain/hakimov/arrayset) - Collections, Java Collections Framework
 3. [student](java-solutions/ru/ifmo/rain/hakimov/student) - Lambdas, Lambda-expressions, Java Stream API
 4. [implementor](java-solutions/ru/ifmo/rain/hakimov/implementor) - Java Reflection, Java Docs, JAR
