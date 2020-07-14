@@ -1,0 +1,3 @@
+-> `build.sh` - compiles and builds project.
+-> `runTests.sh` - runs tests using standard JUnit methods
+-> `clean.sh` - clean ".class"-files and removes "out" directory

@@ -1,0 +1,591 @@
+UsageResourceBundle_ru.java:8: error: unmappable character (0x8F) for encoding windows-1252
+            {"info", "Сводна�? �?тати�?тика"},
+                                   ^
+UsageResourceBundle_ru.java:8: error: unmappable character (0x81) for encoding windows-1252
+            {"info", "Сводна�? �?тати�?тика"},
+                                      ^
+UsageResourceBundle_ru.java:8: error: unmappable character (0x81) for encoding windows-1252
+            {"info", "Сводна�? �?тати�?тика"},
+                                                ^
+UsageResourceBundle_ru.java:9: error: unmappable character (0x90) for encoding windows-1252
+            {"analyse", "�?нализируемый файл"},
+                          ^
+UsageResourceBundle_ru.java:10: error: unmappable character (0x81) for encoding windows-1252
+            {"sentencesStatistics", "Стати�?тика по предложени�?м"},
+                                                ^
+UsageResourceBundle_ru.java:10: error: unmappable character (0x8F) for encoding windows-1252
+            {"sentencesStatistics", "Стати�?тика по предложени�?м"},
+                                                                                    ^
+UsageResourceBundle_ru.java:11: error: unmappable character (0x81) for encoding windows-1252
+            {"wordsStatistics", "Стати�?тика по �?ловам"},
+                                            ^
+UsageResourceBundle_ru.java:11: error: unmappable character (0x81) for encoding windows-1252
+            {"wordsStatistics", "Стати�?тика по �?ловам"},
+                                                            ^
+UsageResourceBundle_ru.java:12: error: unmappable character (0x81) for encoding windows-1252
+            {"linesStatistics", "Стати�?тика по �?трокам"},
+                                            ^
+UsageResourceBundle_ru.java:12: error: unmappable character (0x81) for encoding windows-1252
+            {"linesStatistics", "Стати�?тика по �?трокам"},
+                                                            ^
+UsageResourceBundle_ru.java:13: error: unmappable character (0x81) for encoding windows-1252
+            {"currencyStatistics", "Стати�?тика по валюте"},
+                                               ^
+UsageResourceBundle_ru.java:14: error: unmappable character (0x81) for encoding windows-1252
+            {"numbersStatistics", "Стати�?тика по чи�?лам"},
+                                              ^
+UsageResourceBundle_ru.java:14: error: unmappable character (0x81) for encoding windows-1252
+            {"numbersStatistics", "Стати�?тика по чи�?лам"},
+                                                                  ^
+UsageResourceBundle_ru.java:15: error: unmappable character (0x81) for encoding windows-1252
+            {"datesStatistics", "Стати�?тика по датам"},
+                                            ^
+UsageResourceBundle_ru.java:16: error: unmappable character (0x81) for encoding windows-1252
+            {"Number", "Количе�?тво"},
+                                     ^
+UsageResourceBundle_ru.java:19: error: unmappable character (0x8F) for encoding windows-1252
+            {"sentences2", "предложени�?"},
+                                                 ^
+UsageResourceBundle_ru.java:20: error: unmappable character (0x81) for encoding windows-1252
+            {"words", "�?лов"},
+                        ^
+UsageResourceBundle_ru.java:21: error: unmappable character (0x81) for encoding windows-1252
+            {"word", "�?лова"},
+                       ^
+UsageResourceBundle_ru.java:22: error: unmappable character (0x81) for encoding windows-1252
+            {"word2", "�?лово"},
+                        ^
+UsageResourceBundle_ru.java:23: error: unmappable character (0x81) for encoding windows-1252
+            {"lines", "�?трок"},
+                        ^
+UsageResourceBundle_ru.java:24: error: unmappable character (0x81) for encoding windows-1252
+            {"line", "�?троки"},
+                       ^
+UsageResourceBundle_ru.java:25: error: unmappable character (0x81) for encoding windows-1252
+            {"line2", "�?трока"},
+                        ^
+UsageResourceBundle_ru.java:27: error: unmappable character (0x81) for encoding windows-1252
+            {"number", "чи�?ло"},
+                             ^
+UsageResourceBundle_ru.java:28: error: unmappable character (0x81) for encoding windows-1252
+            {"numbers", "чи�?ла"},
+                              ^
+UsageResourceBundle_ru.java:29: error: unmappable character (0x81) for encoding windows-1252
+            {"numbers2", "чи�?ел"},
+                               ^
+UsageResourceBundle_ru.java:33: error: unmappable character (0x81) for encoding windows-1252
+            {"sum", "�?умма"},
+                      ^
+UsageResourceBundle_ru.java:35: error: unmappable character (0x8F) for encoding windows-1252
+            {"min2", "Минимальна�?"},
+                                           ^
+UsageResourceBundle_ru.java:36: error: unmappable character (0x81) for encoding windows-1252
+            {"max", "Мак�?имальное"},
+                            ^
+UsageResourceBundle_ru.java:37: error: unmappable character (0x81) for encoding windows-1252
+            {"max2", "Mак�?имальна�?"},
+                            ^
+UsageResourceBundle_ru.java:37: error: unmappable character (0x8F) for encoding windows-1252
+            {"max2", "Mак�?имальна�?"},
+                                            ^
+UsageResourceBundle_ru.java:39: error: unmappable character (0x8F) for encoding windows-1252
+            {"average2", "Средн�?�?"},
+                                     ^
+UsageResourceBundle_ru.java:39: error: unmappable character (0x8F) for encoding windows-1252
+            {"average2", "Средн�?�?"},
+                                       ^
+32 errors
+StatisticsTests.java:3: error: package org.junit.jupiter.api does not exist
+import org.junit.jupiter.api.Assertions;
+                            ^
+StatisticsTests.java:4: error: package org.junit.jupiter.api does not exist
+import org.junit.jupiter.api.DisplayName;
+                            ^
+StatisticsTests.java:5: error: package org.junit.jupiter.api does not exist
+import org.junit.jupiter.api.Test;
+                            ^
+StatisticsTests.java:17: error: cannot find symbol
+@DisplayName("Statistics tests")
+ ^
+  symbol: class DisplayName
+StatisticsTests.java:50: error: cannot find symbol
+    @Test
+     ^
+  symbol:   class Test
+  location: class StatisticsTests
+StatisticsTests.java:51: error: cannot find symbol
+    @DisplayName("Testing words...")
+     ^
+  symbol:   class DisplayName
+  location: class StatisticsTests
+StatisticsTests.java:94: error: cannot find symbol
+    @Test
+     ^
+  symbol:   class Test
+  location: class StatisticsTests
+StatisticsTests.java:95: error: cannot find symbol
+    @DisplayName("Testing sentences...")
+     ^
+  symbol:   class DisplayName
+  location: class StatisticsTests
+StatisticsTests.java:139: error: cannot find symbol
+    @Test
+     ^
+  symbol:   class Test
+  location: class StatisticsTests
+StatisticsTests.java:140: error: cannot find symbol
+    @DisplayName("Testing lines...")
+     ^
+  symbol:   class DisplayName
+  location: class StatisticsTests
+StatisticsTests.java:179: error: cannot find symbol
+    @Test
+     ^
+  symbol:   class Test
+  location: class StatisticsTests
+StatisticsTests.java:180: error: cannot find symbol
+    @DisplayName("Testing dates...")
+     ^
+  symbol:   class DisplayName
+  location: class StatisticsTests
+StatisticsTests.java:223: error: cannot find symbol
+    @Test
+     ^
+  symbol:   class Test
+  location: class StatisticsTests
+StatisticsTests.java:224: error: cannot find symbol
+    @DisplayName("Testing numbers...")
+     ^
+  symbol:   class DisplayName
+  location: class StatisticsTests
+StatisticsTests.java:279: error: cannot find symbol
+    @Test
+     ^
+  symbol:   class Test
+  location: class StatisticsTests
+StatisticsTests.java:280: error: cannot find symbol
+    @DisplayName("Testing currency...")
+     ^
+  symbol:   class DisplayName
+  location: class StatisticsTests
+StatisticsTests.java:26: error: cannot find symbol
+                .filter((method) -> method.getDeclaredAnnotation(Test.class) != null).collect(toList());
+                                                                 ^
+  symbol:   class Test
+  location: class StatisticsTests
+StatisticsTests.java:53: error: cannot find symbol
+        TextStatistics resultingData = new TextStatistics("a ab abc", ENGLISH_LOCALE);
+        ^
+  symbol:   class TextStatistics
+  location: class StatisticsTests
+StatisticsTests.java:53: error: cannot find symbol
+        TextStatistics resultingData = new TextStatistics("a ab abc", ENGLISH_LOCALE);
+                                           ^
+  symbol:   class TextStatistics
+  location: class StatisticsTests
+StatisticsTests.java:54: error: cannot find symbol
+        StatisticsData wordsStatistics = resultingData.calculateStatistics(BreakIterator.getWordInstance(ENGLISH_LOCALE));
+        ^
+  symbol:   class StatisticsData
+  location: class StatisticsTests
+StatisticsTests.java:56: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 3);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:57: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minElement, "a");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:58: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxElement, "abc");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:59: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "a");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:60: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "abc");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:61: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.averageValue, 2);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:63: error: cannot find symbol
+        resultingData = new TextStatistics("a ba cba", ENGLISH_LOCALE);
+                            ^
+  symbol:   class TextStatistics
+  location: class StatisticsTests
+StatisticsTests.java:66: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 3);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:67: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minElement, "a");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:68: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxElement, "cba");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:69: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "a");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:70: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "cba");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:71: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.averageValue, 2);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:73: error: cannot find symbol
+        resultingData = new TextStatistics("a ab ba abc cba", ENGLISH_LOCALE);
+                            ^
+  symbol:   class TextStatistics
+  location: class StatisticsTests
+StatisticsTests.java:76: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 5);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:77: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minElement, "a");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:78: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxElement, "cba");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:79: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "a");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:80: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "abc");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:81: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.averageValue, 2.2);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:83: error: cannot find symbol
+        resultingData = new TextStatistics("O hi my name is Jonathan peers", ENGLISH_LOCALE);
+                            ^
+  symbol:   class TextStatistics
+  location: class StatisticsTests
+StatisticsTests.java:86: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 7);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:87: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minElement, "hi");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:88: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxElement, "peers");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:89: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "O");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:90: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "Jonathan");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:91: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.averageValue, 24.0 / 7);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:97: error: cannot find symbol
+        TextStatistics resultingData = new TextStatistics("Hi, all! My name is John.", ENGLISH_LOCALE);
+        ^
+  symbol:   class TextStatistics
+  location: class StatisticsTests
+StatisticsTests.java:97: error: cannot find symbol
+        TextStatistics resultingData = new TextStatistics("Hi, all! My name is John.", ENGLISH_LOCALE);
+                                           ^
+  symbol:   class TextStatistics
+  location: class StatisticsTests
+StatisticsTests.java:98: error: cannot find symbol
+        StatisticsData wordsStatistics = resultingData.calculateStatistics(BreakIterator.getSentenceInstance(ENGLISH_LOCALE));
+        ^
+  symbol:   class StatisticsData
+  location: class StatisticsTests
+StatisticsTests.java:100: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 2);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:101: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minElement, "Hi, all!");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:102: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxElement, "My name is John.");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:103: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "Hi, all!");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:104: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "My name is John.");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:105: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.averageValue, 12);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:107: error: cannot find symbol
+        resultingData = new TextStatistics("All of you are doing well? Boring, man. Cd's are top!", ENGLISH_LOCALE);
+                            ^
+  symbol:   class TextStatistics
+  location: class StatisticsTests
+StatisticsTests.java:110: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 3);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:111: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minElement, "All of you are doing well?");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:112: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxElement, "Cd's are top!");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:113: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "Boring, man.");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:114: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "All of you are doing well?");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:115: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.averageValue, 17);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:117: error: cannot find symbol
+        resultingData = new TextStatistics("Denis is a very bad man, because he has stolen my bag. " +
+                            ^
+  symbol:   class TextStatistics
+  location: class StatisticsTests
+StatisticsTests.java:121: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 4);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:122: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minElement, "Denis is a very bad man, because he has stolen my bag.");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:123: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxElement, "Good, boy.");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:124: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "Good, boy.");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:125: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "Denis is a very bad man, because he has stolen my bag.");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:126: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.averageValue, 33);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:128: error: cannot find symbol
+        resultingData = new TextStatistics("Hijkl. Mnoops! Qrs. Tuv. Wx. Yz?", ENGLISH_LOCALE);
+                            ^
+  symbol:   class TextStatistics
+  location: class StatisticsTests
+StatisticsTests.java:131: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 6);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:132: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minElement, "Hijkl.");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:133: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxElement, "Yz?");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:134: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "Wx.");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:135: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "Mnoops!");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:136: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.averageValue, 4.5);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:142: error: cannot find symbol
+        TextStatistics resultingData = new TextStatistics("A\n" +
+        ^
+  symbol:   class TextStatistics
+  location: class StatisticsTests
+StatisticsTests.java:142: error: cannot find symbol
+        TextStatistics resultingData = new TextStatistics("A\n" +
+                                           ^
+  symbol:   class TextStatistics
+  location: class StatisticsTests
+StatisticsTests.java:145: error: cannot find symbol
+        StatisticsData wordsStatistics = resultingData.calculateStatistics(BreakIterator.getLineInstance(ENGLISH_LOCALE));
+        ^
+  symbol:   class StatisticsData
+  location: class StatisticsTests
+StatisticsTests.java:147: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 3);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:148: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minElement, "A");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:149: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxElement, "test.");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:150: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "A");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:151: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "lines.");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:152: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.averageValue, 4);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:154: error: cannot find symbol
+        resultingData = new TextStatistics("Abracadabra!\n" +
+                            ^
+  symbol:   class TextStatistics
+  location: class StatisticsTests
+StatisticsTests.java:159: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 3);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:160: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minElement, "Abracadabra!");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:161: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxElement, "C++.");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:162: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "Bro.");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:163: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "Abracadabra!");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:164: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.averageValue, 20.0 / 3);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:166: error: cannot find symbol
+        resultingData = new TextStatistics("Epsilon?\n" +
+                            ^
+  symbol:   class TextStatistics
+  location: class StatisticsTests
+StatisticsTests.java:171: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 3);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:172: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minElement, "Epsilon?");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:173: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxElement, "HelloUDP.");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:174: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "Gerard.");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:175: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "HelloUDP.");
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+StatisticsTests.java:176: error: cannot find symbol
+        Assertions.assertEquals(wordsStatistics.averageValue, 8);
+        ^
+  symbol:   variable Assertions
+  location: class StatisticsTests
+100 errors

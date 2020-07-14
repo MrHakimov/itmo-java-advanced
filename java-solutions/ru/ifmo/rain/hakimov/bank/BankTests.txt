@@ -1,0 +1,195 @@
+package ru.ifmo.rain.hakimov.bank;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
+
+import java.io.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
+import java.rmi.RemoteException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.toList;
+
+@DisplayName("Bank tests")
+class BankTests {
+    private static final int PORT = 8888;
+    private static final int MONEY = 200;
+    private static final int MAX_SIZE = 100_000;
+
+    private static final String SEP = ":";
+    private static final String EMPTY = "";
+    private static final String NEW_LINE = String.format("%n");
+
+    private static final String ID = "id";
+    private static final String OTHER_ID = "id_new";
+    private static final String FIRST_NAME = "John";
+    private static final String LAST_NAME = "Chan";
+    private static final String PASSPORT_NUMBER = "777P777";
+    private static final String OTHER_PASSPORT_NUMBER = "666A666";
+
+    private static final String INVALID_ARGS = "Invalid arguments!";
+
+    private static final Bank globalBank = new RemoteBank(PORT);
+
+    private void testPerson(Bank bank) throws IOException, ClassNotFoundException {
+        Assertions.assertNull(bank.getPerson(PASSPORT_NUMBER));
+        Person person = bank.createPerson(FIRST_NAME, LAST_NAME, PASSPORT_NUMBER);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+        new ObjectOutputStream(outputStream)
+                .writeObject(new LocalPerson(((RemoteBank) bank).getPerson(PASSPORT_NUMBER)));
+
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+        LocalPerson localPerson = (LocalPerson) (new ObjectInputStream(inputStream).readObject());
+        localPerson.addAccount(PASSPORT_NUMBER);
+        Assertions.assertNotEquals(localPerson.getAccount(PASSPORT_NUMBER), person.getAccount(PASSPORT_NUMBER));
+
+        Assertions.assertEquals(FIRST_NAME, person.getFirstName());
+        Assertions.assertEquals(LAST_NAME, person.getLastName());
+        Assertions.assertEquals(PASSPORT_NUMBER, person.getPassportNumber());
+
+        Assertions.assertEquals(person, bank.getPerson(PASSPORT_NUMBER));
+        Assertions.assertEquals(person, bank.createPerson(EMPTY, EMPTY, PASSPORT_NUMBER));
+        Assertions.assertEquals(person, bank.createPerson(FIRST_NAME, EMPTY, PASSPORT_NUMBER));
+        Assertions.assertEquals(person, bank.createPerson(EMPTY, LAST_NAME, PASSPORT_NUMBER));
+
+        Assertions.assertNotEquals(person, bank.getPerson(OTHER_PASSPORT_NUMBER));
+        Assertions.assertNotEquals(person, bank.createPerson(EMPTY, LAST_NAME, EMPTY));
+        Assertions.assertNotEquals(person, bank.createPerson(FIRST_NAME, EMPTY, EMPTY));
+        Assertions.assertNotEquals(person, bank.createPerson(FIRST_NAME, LAST_NAME, EMPTY));
+        Assertions.assertNotEquals(person, bank.createPerson(FIRST_NAME, EMPTY, OTHER_PASSPORT_NUMBER));
+    }
+
+    private void testAccount(Bank bank) throws RemoteException {
+        Assertions.assertNull(bank.getAccount(ID));
+        Account account = bank.createAccount(ID);
+
+        Assertions.assertEquals(0, account.getAmount());
+        Assertions.assertEquals(ID, account.getId());
+
+        Assertions.assertNotEquals(OTHER_ID, account.getId());
+
+        Assertions.assertEquals(account, bank.getAccount(ID));
+        Assertions.assertEquals(account, bank.createAccount(ID));
+
+        Assertions.assertNotEquals(account, bank.getAccount(""));
+        Assertions.assertNotEquals(account, bank.createAccount(""));
+    }
+
+    @Test
+    @DisplayName("Testing remote bank...")
+    void testRemoteBank() throws IOException, ClassNotFoundException {
+        Bank bank = globalBank;
+
+        testPerson(bank);
+        testAccount(bank);
+
+        System.out.println("Successfully finished remote bank test!");
+    }
+
+    void checkOutputAssert(Executable exec, ByteArrayOutputStream outputStream, String... expected) {
+        outputStream.reset();
+
+        Assertions.assertDoesNotThrow(exec);
+        Assertions.assertEquals(String.join(NEW_LINE, expected) + NEW_LINE,
+                outputStream.toString(StandardCharsets.UTF_8));
+    }
+
+    private void testClientNullArgs(ByteArrayOutputStream outputStream) {
+        checkOutputAssert(Client::main, outputStream, INVALID_ARGS);
+
+        checkOutputAssert(() -> Client.main(FIRST_NAME, LAST_NAME), outputStream, INVALID_ARGS);
+
+        checkOutputAssert(() -> Client.main(FIRST_NAME, LAST_NAME, null),
+                outputStream, INVALID_ARGS
+        );
+
+        checkOutputAssert(() -> Client.main(FIRST_NAME, LAST_NAME, null, null, null),
+                outputStream, INVALID_ARGS
+        );
+
+        checkOutputAssert(() -> Client.main(FIRST_NAME, LAST_NAME, PASSPORT_NUMBER),
+                outputStream, INVALID_ARGS
+        );
+
+        checkOutputAssert(() -> Client.main(FIRST_NAME, LAST_NAME, PASSPORT_NUMBER, ID),
+                outputStream, INVALID_ARGS
+        );
+
+        checkOutputAssert(() -> Client.main(FIRST_NAME, LAST_NAME, PASSPORT_NUMBER, OTHER_ID),
+                outputStream, INVALID_ARGS
+        );
+    }
+
+    @Test
+    @DisplayName("Testing client-server cooperation...")
+    void testClientServer() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ByteArrayOutputStream serverOutputStream = outputStream;
+        Server.printStream = new PrintStream(outputStream, true, StandardCharsets.UTF_8);
+
+        Assertions.assertDoesNotThrow((Executable) Server::main);
+
+        Assertions.assertEquals(outputStream.toString(StandardCharsets.UTF_8), "Server is up now...\n");
+
+        outputStream = new ByteArrayOutputStream();
+        Client.printStream = new PrintStream(outputStream, true, StandardCharsets.UTF_8);
+
+        testClientNullArgs(outputStream);
+
+        checkOutputAssert(Server::downServer, serverOutputStream, "Server is down now...");
+        Server.printStream = System.out;
+        Client.printStream = System.out;
+
+        System.out.println("Successfully finished client-server cooperation test!");
+    }
+
+    @Test
+    @DisplayName("Testing thread-safety...")
+    void testThreadSafety() throws RemoteException {
+        IntStream.range(1, MAX_SIZE).parallel().forEach((i) -> {
+            try {
+                String id = Integer.toString(i);
+                globalBank.createPerson(FIRST_NAME + id,
+                        LAST_NAME + id, PASSPORT_NUMBER + id);
+            } catch (RemoteException e) {
+                throw new RuntimeException("Unable to create person!");
+            }
+        });
+
+        for (int i = 1; i < MAX_SIZE; i++) {
+            String id = Integer.toString(i);
+            Person person = globalBank.getPerson(PASSPORT_NUMBER + id);
+
+            Assertions.assertEquals(person.getPassportNumber(), PASSPORT_NUMBER + id);
+        }
+
+        Person person = globalBank.createPerson(FIRST_NAME, LAST_NAME, PASSPORT_NUMBER);
+
+        IntStream.range(1, MAX_SIZE).parallel().forEach((i) -> {
+            try {
+                person.addAccount(ID + i).setAmount(MONEY);
+            } catch (RemoteException e) {
+                throw new RuntimeException("Unable to create account!");
+            }
+        });
+
+        for (int i = 1; i < MAX_SIZE; i++) {
+            String id = Integer.toString(i);
+            Account account = person.getAccount(ID + id);
+
+            Assertions.assertEquals(person.getAccount(ID + id), account);
+            Assertions.assertEquals(account.getId(), PASSPORT_NUMBER + SEP + ID + id);
+            Assertions.assertEquals(account.getAmount(), MONEY);
+        }
+
+        System.out.println("Successfully finished thread-safety test!");
+    }
+}

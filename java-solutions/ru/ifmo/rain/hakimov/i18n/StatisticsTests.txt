@@ -1,0 +1,301 @@
+package ru.ifmo.rain.hakimov.i18n;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.text.BreakIterator;
+import java.util.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.InvalidPathException;
+import java.nio.charset.StandardCharsets;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
+
+@DisplayName("Statistics tests")
+class StatisticsTests {
+    private static final Locale ENGLISH_LOCALE = Locale.US;
+
+    @Test
+    @DisplayName("Testing words...")
+    void testWords() {
+        TextStatistics resultingData = new TextStatistics("a ab abc", ENGLISH_LOCALE);
+        StatisticsData wordsStatistics = resultingData.calculateStatistics(BreakIterator.getWordInstance(ENGLISH_LOCALE));
+
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 3);
+        Assertions.assertEquals(wordsStatistics.minElement, "a");
+        Assertions.assertEquals(wordsStatistics.maxElement, "abc");
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "a");
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "abc");
+        Assertions.assertEquals(wordsStatistics.averageValue, 2);
+
+        resultingData = new TextStatistics("a ba cba", ENGLISH_LOCALE);
+        wordsStatistics = resultingData.calculateStatistics(BreakIterator.getWordInstance(ENGLISH_LOCALE));
+
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 3);
+        Assertions.assertEquals(wordsStatistics.minElement, "a");
+        Assertions.assertEquals(wordsStatistics.maxElement, "cba");
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "a");
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "cba");
+        Assertions.assertEquals(wordsStatistics.averageValue, 2);
+
+        resultingData = new TextStatistics("a ab ba abc cba", ENGLISH_LOCALE);
+        wordsStatistics = resultingData.calculateStatistics(BreakIterator.getWordInstance(ENGLISH_LOCALE));
+
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 5);
+        Assertions.assertEquals(wordsStatistics.minElement, "a");
+        Assertions.assertEquals(wordsStatistics.maxElement, "cba");
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "a");
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "abc");
+        Assertions.assertEquals(wordsStatistics.averageValue, 2.2);
+
+        resultingData = new TextStatistics("O hi my name is Jonathan peers", ENGLISH_LOCALE);
+        wordsStatistics = resultingData.calculateStatistics(BreakIterator.getWordInstance(ENGLISH_LOCALE));
+
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 7);
+        Assertions.assertEquals(wordsStatistics.minElement, "hi");
+        Assertions.assertEquals(wordsStatistics.maxElement, "peers");
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "O");
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "Jonathan");
+        Assertions.assertEquals(wordsStatistics.averageValue, 24.0 / 7);
+    }
+
+    @Test
+    @DisplayName("Testing sentences...")
+    void testSentences() {
+        TextStatistics resultingData = new TextStatistics("Hi, all! My name is John.", ENGLISH_LOCALE);
+        StatisticsData wordsStatistics = resultingData.calculateStatistics(BreakIterator.getSentenceInstance(ENGLISH_LOCALE));
+
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 2);
+        Assertions.assertEquals(wordsStatistics.minElement, "Hi, all!");
+        Assertions.assertEquals(wordsStatistics.maxElement, "My name is John.");
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "Hi, all!");
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "My name is John.");
+        Assertions.assertEquals(wordsStatistics.averageValue, 12);
+
+        resultingData = new TextStatistics("All of you are doing well? Boring, man. Cd's are top!", ENGLISH_LOCALE);
+        wordsStatistics = resultingData.calculateStatistics(BreakIterator.getSentenceInstance(ENGLISH_LOCALE));
+
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 3);
+        Assertions.assertEquals(wordsStatistics.minElement, "All of you are doing well?");
+        Assertions.assertEquals(wordsStatistics.maxElement, "Cd's are top!");
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "Boring, man.");
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "All of you are doing well?");
+        Assertions.assertEquals(wordsStatistics.averageValue, 17);
+
+        resultingData = new TextStatistics("Denis is a very bad man, because he has stolen my bag. " +
+                "Erasmus is a cool project! Failing the battle is not failing the war! Good, boy.", ENGLISH_LOCALE);
+        wordsStatistics = resultingData.calculateStatistics(BreakIterator.getSentenceInstance(ENGLISH_LOCALE));
+
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 4);
+        Assertions.assertEquals(wordsStatistics.minElement, "Denis is a very bad man, because he has stolen my bag.");
+        Assertions.assertEquals(wordsStatistics.maxElement, "Good, boy.");
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "Good, boy.");
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "Denis is a very bad man, because he has stolen my bag.");
+        Assertions.assertEquals(wordsStatistics.averageValue, 33);
+
+        resultingData = new TextStatistics("Hijkl. Mnoops! Qrs. Tuv. Wx. Yz?", ENGLISH_LOCALE);
+        wordsStatistics = resultingData.calculateStatistics(BreakIterator.getSentenceInstance(ENGLISH_LOCALE));
+
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 6);
+        Assertions.assertEquals(wordsStatistics.minElement, "Hijkl.");
+        Assertions.assertEquals(wordsStatistics.maxElement, "Yz?");
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "Wx.");
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "Mnoops!");
+        Assertions.assertEquals(wordsStatistics.averageValue, 4.5);
+    }
+
+    @Test
+    @DisplayName("Testing lines...")
+    void testLines() {
+        TextStatistics resultingData = new TextStatistics("A\n" +
+                "lines.\n" +
+                "test.", ENGLISH_LOCALE);
+        StatisticsData wordsStatistics = resultingData.calculateStatistics(BreakIterator.getLineInstance(ENGLISH_LOCALE));
+
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 3);
+        Assertions.assertEquals(wordsStatistics.minElement, "A");
+        Assertions.assertEquals(wordsStatistics.maxElement, "test.");
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "A");
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "lines.");
+        Assertions.assertEquals(wordsStatistics.averageValue, 4);
+
+        resultingData = new TextStatistics("Abracadabra!\n" +
+                "Bro.\n" +
+                "C++.", ENGLISH_LOCALE);
+        wordsStatistics = resultingData.calculateStatistics(BreakIterator.getLineInstance(ENGLISH_LOCALE));
+
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 3);
+        Assertions.assertEquals(wordsStatistics.minElement, "Abracadabra!");
+        Assertions.assertEquals(wordsStatistics.maxElement, "C++.");
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "Bro.");
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "Abracadabra!");
+        Assertions.assertEquals(wordsStatistics.averageValue, 20.0 / 3);
+
+        resultingData = new TextStatistics("Epsilon?\n" +
+                "Gerard.\n" +
+                "HelloUDP.", ENGLISH_LOCALE);
+        wordsStatistics = resultingData.calculateStatistics(BreakIterator.getLineInstance(ENGLISH_LOCALE));
+
+        Assertions.assertEquals(wordsStatistics.elementsNumber, 3);
+        Assertions.assertEquals(wordsStatistics.minElement, "Epsilon?");
+        Assertions.assertEquals(wordsStatistics.maxElement, "HelloUDP.");
+        Assertions.assertEquals(wordsStatistics.minLengthElement, "Gerard.");
+        Assertions.assertEquals(wordsStatistics.maxLengthElement, "HelloUDP.");
+        Assertions.assertEquals(wordsStatistics.averageValue, 8);
+    }
+
+    @Test
+    @DisplayName("Testing dates...")
+    void testDates() {
+        TextStatistics resultingData = new TextStatistics("6/11/2019", ENGLISH_LOCALE);
+        NumericStatistics numericStatistics = resultingData.calculateNumbersStatistics();
+        StatisticsData dateStatistics = numericStatistics.getDate();
+
+        Assertions.assertEquals(dateStatistics.elementsNumber, 1);
+        Assertions.assertEquals(dateStatistics.minElement, "6/11/2019");
+        Assertions.assertEquals(dateStatistics.maxElement, "6/11/2019");
+        Assertions.assertEquals(dateStatistics.minLengthElement, "6/11/2019");
+        Assertions.assertEquals(dateStatistics.maxLengthElement, "6/11/2019");
+
+        resultingData = new TextStatistics("1/2/3 4/5/6", ENGLISH_LOCALE);
+        numericStatistics = resultingData.calculateNumbersStatistics();
+        dateStatistics = numericStatistics.getDate();
+
+        Assertions.assertEquals(dateStatistics.elementsNumber, 2);
+        Assertions.assertEquals(dateStatistics.minElement, "1/2/3");
+        Assertions.assertEquals(dateStatistics.maxElement, "4/5/6");
+        Assertions.assertEquals(dateStatistics.minLengthElement, "1/2/3");
+        Assertions.assertEquals(dateStatistics.maxLengthElement, "1/2/3");
+
+        resultingData = new TextStatistics("03/02/2019\n4/5/2020\t02/18/2019", ENGLISH_LOCALE);
+        numericStatistics = resultingData.calculateNumbersStatistics();
+        dateStatistics = numericStatistics.getDate();
+
+        Assertions.assertEquals(dateStatistics.elementsNumber, 3);
+        Assertions.assertEquals(dateStatistics.minElement, "02/18/2019");
+        Assertions.assertEquals(dateStatistics.maxElement, "4/5/2020");
+        Assertions.assertEquals(dateStatistics.minLengthElement, "4/5/2020");
+        Assertions.assertEquals(dateStatistics.maxLengthElement, "03/02/2019");
+
+        resultingData = new TextStatistics("Trash. And rubbish. And musor.", ENGLISH_LOCALE);
+        numericStatistics = resultingData.calculateNumbersStatistics();
+        dateStatistics = numericStatistics.getDate();
+
+        Assertions.assertEquals(dateStatistics.elementsNumber, 0);
+        Assertions.assertNull(dateStatistics.minElement);
+        Assertions.assertNull(dateStatistics.maxElement);
+        Assertions.assertNull(dateStatistics.minLengthElement);
+        Assertions.assertNull(dateStatistics.maxLengthElement);
+    }
+
+    @Test
+    @DisplayName("Testing numbers...")
+    void testNumbers() {
+        TextStatistics resultingData = new TextStatistics("", ENGLISH_LOCALE);
+        NumericStatistics numericStatistics = resultingData.calculateNumbersStatistics();
+        StatisticsData numbersStatistics = numericStatistics.getNumbers();
+
+        Assertions.assertEquals(numbersStatistics.elementsNumber, 0);
+        Assertions.assertNull(numbersStatistics.minElement);
+        Assertions.assertNull(numbersStatistics.maxElement);
+        Assertions.assertNull(numbersStatistics.minLengthElement);
+        Assertions.assertNull(numbersStatistics.maxLengthElement);
+        Assertions.assertEquals(numbersStatistics.averageValue, 0);
+
+        resultingData = new TextStatistics("Some more trash.", ENGLISH_LOCALE);
+        numericStatistics = resultingData.calculateNumbersStatistics();
+        numbersStatistics = numericStatistics.getNumbers();
+
+        Assertions.assertEquals(numbersStatistics.elementsNumber, 0);
+        Assertions.assertNull(numbersStatistics.minElement);
+        Assertions.assertNull(numbersStatistics.maxElement);
+        Assertions.assertNull(numbersStatistics.minLengthElement);
+        Assertions.assertNull(numbersStatistics.maxLengthElement);
+        Assertions.assertEquals(numbersStatistics.averageValue, 0);
+
+        resultingData = new TextStatistics("9876 543 21 0", ENGLISH_LOCALE);
+        numericStatistics = resultingData.calculateNumbersStatistics();
+        numbersStatistics = numericStatistics.getNumbers();
+
+        Assertions.assertEquals(numbersStatistics.elementsNumber, 4);
+        Assertions.assertEquals(numbersStatistics.minElement, "0");
+        Assertions.assertEquals(numbersStatistics.maxElement, "9876");
+        Assertions.assertEquals(numbersStatistics.minLengthElement, "0");
+        Assertions.assertEquals(numbersStatistics.maxLengthElement, "9876");
+
+        resultingData = new TextStatistics("11 22 100000 2000", ENGLISH_LOCALE);
+        numericStatistics = resultingData.calculateNumbersStatistics();
+        numbersStatistics = numericStatistics.getNumbers();
+
+        Assertions.assertEquals(numbersStatistics.elementsNumber, 4);
+        Assertions.assertEquals(numbersStatistics.minElement, "11");
+        Assertions.assertEquals(numbersStatistics.maxElement, "100000");
+        Assertions.assertEquals(numbersStatistics.minLengthElement, "11");
+        Assertions.assertEquals(numbersStatistics.maxLengthElement, "100000");
+
+        resultingData = new TextStatistics("1 23 abracadabra 456 7890", ENGLISH_LOCALE);
+        numericStatistics = resultingData.calculateNumbersStatistics();
+        numbersStatistics = numericStatistics.getNumbers();
+
+        Assertions.assertEquals(numbersStatistics.elementsNumber, 4);
+        Assertions.assertEquals(numbersStatistics.minElement, "1");
+        Assertions.assertEquals(numbersStatistics.maxElement, "7890");
+        Assertions.assertEquals(numbersStatistics.minLengthElement, "1");
+        Assertions.assertEquals(numbersStatistics.maxLengthElement, "7890");
+
+        StringBuilder content = new StringBuilder();
+        try (Stream<String> stream = Files.lines(Paths.get("ok_test_result.txt"), StandardCharsets.UTF_8)) {
+            stream.forEach(s -> content.append(s).append("\n"));
+        } catch (InvalidPathException e) {
+            System.err.println("Incorrect file!");
+            return;
+        } catch (IOException e) {
+            System.err.println("Error occured while reading from file!\n" + e.getMessage());
+        }
+
+        System.out.println(content.toString());
+    }
+
+    @Test
+    @DisplayName("Testing currency...")
+    void testCurrency() {
+        TextStatistics resultingData = new TextStatistics("$1.2", ENGLISH_LOCALE);
+        NumericStatistics numericStatistics = resultingData.calculateNumbersStatistics();
+        StatisticsData currencyStatistics = numericStatistics.getCurrency();
+
+        Assertions.assertEquals(currencyStatistics.elementsNumber, 1);
+        Assertions.assertEquals(currencyStatistics.minElement, "$1.2");
+        Assertions.assertEquals(currencyStatistics.maxElement, "$1.2");
+        Assertions.assertEquals(currencyStatistics.minLengthElement, "$1.2");
+        Assertions.assertEquals(currencyStatistics.maxLengthElement, "$1.2");
+        Assertions.assertEquals(currencyStatistics.averageValue, 1.2);
+
+        resultingData = new TextStatistics("$1.2 $2.4", ENGLISH_LOCALE);
+        numericStatistics = resultingData.calculateNumbersStatistics();
+        currencyStatistics = numericStatistics.getCurrency();
+
+        Assertions.assertEquals(currencyStatistics.elementsNumber, 2);
+        Assertions.assertEquals(currencyStatistics.minElement, "$1.2");
+        Assertions.assertEquals(currencyStatistics.maxElement, "$2.4");
+        Assertions.assertEquals(currencyStatistics.minLengthElement, "$1.2");
+        Assertions.assertEquals(currencyStatistics.maxLengthElement, "$1.2");
+        Assertions.assertEquals(currencyStatistics.averageValue, (1.2 + 2.4) / 2);
+
+        resultingData = new TextStatistics("$1.2 $24.4 $1.30000006 $23", ENGLISH_LOCALE);
+        numericStatistics = resultingData.calculateNumbersStatistics();
+        currencyStatistics = numericStatistics.getCurrency();
+
+        Assertions.assertEquals(currencyStatistics.elementsNumber, 4);
+        Assertions.assertEquals(currencyStatistics.minElement, "$1.2");
+        Assertions.assertEquals(currencyStatistics.maxElement, "$24.4");
+        Assertions.assertEquals(currencyStatistics.minLengthElement, "$23");
+        Assertions.assertEquals(currencyStatistics.maxLengthElement, "$1.30000006");
+        Assertions.assertEquals(currencyStatistics.averageValue, (1.2 + 24.4 + 1.30000006 + 23) / 4);
+    }
+}
